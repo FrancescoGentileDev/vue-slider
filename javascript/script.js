@@ -1,5 +1,5 @@
 
-const slides = [
+const data = [
     {
         image: 'img/01.jpg',
         title: 'Svezia',
@@ -31,53 +31,49 @@ const slides = [
 const app = new Vue({
     el: "#app",
     data: {
+        slides: data,
         currentIndex: 0,
         idTimeout: undefined,
-        get thumb() {return document.querySelectorAll(".thumb")},
-        get currentImage() { return slides[this.currentIndex].image },
-        get currentTitle() {return slides[this.currentIndex].title},
-        get currentText() { return slides[this.currentIndex].text },
     },
     methods: {
 
-        nextImg: function () {
+        active: function (index) {
+           
+            if (index == this.currentIndex)
+                return "active"
+            else
+                return ""
+        },
 
-            this.thumb[this.currentIndex].classList.remove("active")
-            
-            if(this.currentIndex<4)
+
+        nextImg: function () {
+            if(this.currentIndex<this.slides.length - 1 )
                 this.currentIndex++
             else {
-                this.currentIndex = 0 
+                this.currentIndex = 0
             }
-            console.log(this.currentIndex)
-            this.thumb[this.currentIndex].classList.add("active")
+           
         },
 
         previousImg: function () {            
-            this.thumb[this.currentIndex].classList.remove("active")
-            console.log(this.currentIndex)
+          
             if(this.currentIndex>0)
                 this.currentIndex--
             else {
-                this.currentIndex = 4
+                this.currentIndex = this.slides.length - 1 
             }
-            this.thumb[this.currentIndex].classList.add("active")
         },
 
 
 
-        clickChange: function (event) {
-            this.thumb[this.currentIndex].classList.remove("active")
-            let changeIndex = 0
-           changeIndex = slides.findIndex((element) => element.title === event.target.alt)
-            console.log(changeIndex)
-            this.currentIndex = changeIndex
-            this.thumb[this.currentIndex].classList.add("active")
+        clickChange: function (index) {
+            this.currentIndex = index
         },
 
         stopAutoplay: function () {
             clearTimeout(this.idTimeout)
         },
+        
         resumeAutoPlay: function () {
             this.idTimeout = setInterval(() => {
                 this.nextImg()
