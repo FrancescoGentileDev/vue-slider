@@ -28,35 +28,44 @@ const slides = [
 ];
 
 
-
-
 const app = new Vue({
     el: "#app",
     data: {
-        prova: "ciao",
-        thumb: "thumb",
         currentIndex: 0,
+        get thumb() {return document.querySelectorAll(".thumb")},
         get currentImage() { return slides[this.currentIndex].image },
         get currentTitle() {return slides[this.currentIndex].title},
         get currentText() { return slides[this.currentIndex].text },
     },
     methods: {
-        nextImg: function() {
+
+
+        nextImg: function () {
+            this.thumb[this.currentIndex].classList.remove("active")
+            
             if(this.currentIndex<4)
                 this.currentIndex++
             else {
                 this.currentIndex = 0 
             }
             console.log(this.currentIndex)
+            this.thumb[this.currentIndex].classList.add("active")
         },
-        previousImg: function () {
+
+
+
+        previousImg: function () {            
+            this.thumb[this.currentIndex].classList.remove("active")
             console.log(this.currentIndex)
             if(this.currentIndex>0)
                 this.currentIndex--
             else {
                 this.currentIndex = 4
             }
+            this.thumb[this.currentIndex].classList.add("active")
         },
+
+
 
         clickChange: function (event) {
             let changeIndex = 0
@@ -64,6 +73,9 @@ const app = new Vue({
             console.log(changeIndex)
             this.currentIndex = changeIndex
         }
+
+
+
     },
 }) 
 
