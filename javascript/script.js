@@ -32,6 +32,7 @@ const app = new Vue({
     el: "#app",
     data: {
         currentIndex: 0,
+        idTimeout: undefined,
         get thumb() {return document.querySelectorAll(".thumb")},
         get currentImage() { return slides[this.currentIndex].image },
         get currentTitle() {return slides[this.currentIndex].title},
@@ -41,6 +42,7 @@ const app = new Vue({
 
 
         nextImg: function () {
+
             this.thumb[this.currentIndex].classList.remove("active")
             
             if(this.currentIndex<4)
@@ -72,15 +74,22 @@ const app = new Vue({
            changeIndex = slides.findIndex((element) => element.title === event.target.alt)
             console.log(changeIndex)
             this.currentIndex = changeIndex
+        },
+
+        stopAutoplay: function () {
+            clearTimeout(this.idTimeout)
+        },
+        resumeAutoPlay: function () {
+            this.idTimeout = setInterval(() => {
+                this.nextImg()
+            }, 3000);
         }
 
 
 
     },
     created() {
-        setInterval(() => {
-            this.nextImg()
-        }, 3000);
+       this.resumeAutoPlay()
     },
 }) 
 
