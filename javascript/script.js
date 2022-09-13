@@ -40,7 +40,6 @@ const app = new Vue({
     },
     methods: {
 
-
         nextImg: function () {
 
             this.thumb[this.currentIndex].classList.remove("active")
@@ -53,8 +52,6 @@ const app = new Vue({
             console.log(this.currentIndex)
             this.thumb[this.currentIndex].classList.add("active")
         },
-
-
 
         previousImg: function () {            
             this.thumb[this.currentIndex].classList.remove("active")
@@ -70,10 +67,12 @@ const app = new Vue({
 
 
         clickChange: function (event) {
+            this.thumb[this.currentIndex].classList.remove("active")
             let changeIndex = 0
            changeIndex = slides.findIndex((element) => element.title === event.target.alt)
             console.log(changeIndex)
             this.currentIndex = changeIndex
+            this.thumb[this.currentIndex].classList.add("active")
         },
 
         stopAutoplay: function () {
