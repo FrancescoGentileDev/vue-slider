@@ -28,20 +28,20 @@
                 <div class="thumbs">
                     <div class="prev" @click="previousImg"></div>
                     <div class="next" @click="nextImg"></div>
-                    <div class="thumb active">
-                        <img src="img/01.jpg" alt="Svezia"/>
+                    <div class="thumb active" >
+                        <img src="img/01.jpg" @click="clickChange($event)" alt="Svezia"/>
                     </div>
                     <div class="thumb">
-                        <img src="img/02.jpg" alt="Svizzera" />
+                        <img src="img/02.jpg" @click="clickChange($event)" alt="Svizzera" />
                     </div>
                     <div class="thumb">
-                        <img src="img/03.jpg" alt="Gran Bretagna" />
+                        <img src="img/03.jpg" @click="clickChange($event)" alt="Gran Bretagna" />
                     </div>
                     <div class="thumb">
-                        <img src="img/04.jpg" alt="Germania" />
+                        <img src="img/04.jpg" @click="clickChange($event)" alt="Germania" />
                     </div>
                     <div class="thumb">
-                        <img src="img/05.jpg" alt="Paradise" />
+                        <img src="img/05.jpg" @click="clickChange($event)" alt="Paradise" />
                     </div>
                 </div>
 

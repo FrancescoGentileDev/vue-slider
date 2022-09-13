@@ -38,11 +38,10 @@ const app = new Vue({
         currentIndex: 0,
         get currentImage() { return slides[this.currentIndex].image },
         get currentTitle() {return slides[this.currentIndex].title},
-        get currentText() {return slides[this.currentIndex].text}
+        get currentText() { return slides[this.currentIndex].text },
     },
     methods: {
         nextImg: function() {
-            
             if(this.currentIndex<4)
                 this.currentIndex++
             else {
@@ -57,6 +56,13 @@ const app = new Vue({
             else {
                 this.currentIndex = 4
             }
+        },
+
+        clickChange: function (event) {
+            let changeIndex = 0
+           changeIndex = slides.findIndex((element) => element.title === event.target.alt)
+            console.log(changeIndex)
+            this.currentIndex = changeIndex
         }
     },
 }) 
