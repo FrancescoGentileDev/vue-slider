@@ -1,3 +1,4 @@
+
 const slides = [
     {
         image: 'img/01.jpg',
@@ -26,4 +27,40 @@ const slides = [
     }
 ];
 
-console.log(slides);
+
+
+
+const app = new Vue({
+    el: "#app",
+    data: {
+        prova: "ciao",
+        thumb: "thumb",
+        currentIndex: 0,
+        get currentImage() { return slides[this.currentIndex].image },
+        get currentTitle() {return slides[this.currentIndex].title},
+        get currentText() {return slides[this.currentIndex].text}
+    },
+    methods: {
+        nextImg: function() {
+            
+            if(this.currentIndex<4)
+                this.currentIndex++
+            else {
+                this.currentIndex = 0 
+            }
+            console.log(this.currentIndex)
+        },
+        previousImg: function () {
+            console.log(this.currentIndex)
+            if(this.currentIndex>0)
+                this.currentIndex--
+            else {
+                this.currentIndex = 4
+            }
+        }
+    },
+}) 
+
+
+
+
